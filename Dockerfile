@@ -14,7 +14,8 @@ RUN npm install --omit=dev
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+COPY package.json package-lock.json* ./
+RUN npm install
 COPY . .
 
 # Build the application
