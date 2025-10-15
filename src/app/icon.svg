@@ -1,0 +1,15 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fond rouge italien -->
+  <rect width="32" height="32" fill="#DC2626" rx="6"/>
+
+  <!-- Fourchette simple et élégante -->
+  <g fill="white">
+    <!-- Manche -->
+    <rect x="12" y="10" width="3" height="14" rx="1.5"/>
+
+    <!-- Dents de la fourchette -->
+    <rect x="11" y="4" width="1.5" height="8" rx="0.75"/>
+    <rect x="13.25" y="3" width="1.5" height="9" rx="0.75"/>
+    <rect x="15.5" y="4" width="1.5" height="8" rx="0.75"/>
+  </g>
+</svg>

@@ -1,0 +1,36 @@
+import React from 'react';
+import { Box, Container, Heading, SimpleGrid, Stack, Text } from '@chakra-ui/react';
+
+const ITEMS = [
+  { title: 'Antipasti misti', desc: 'Sélection du chef', price: '18 €' },
+  { title: 'Carpaccio di manzo', desc: 'Bœuf, parmesan, roquette', price: '16 €' },
+  { title: "Paccheri all'Astice", desc: 'Homard, bisque corsée', price: '32 €' },
+  { title: 'Risotto safran & taleggio', desc: 'Carnaroli, taleggio', price: '27 €' },
+  { title: 'Tagliata di manzo', desc: 'Bœuf, roquette, balsamique', price: '29 €' },
+  { title: 'Tiramisu', desc: 'Classique maison', price: '10 €' },
+];
+
+export const metadata = { title: 'Carte' };
+
+export default function MenuPage() {
+  return (
+    <Box as="section" py={{ base: 16, md: 20 }}>
+      <Container>
+        <Stack spacing={3} mb={8}>
+          <Heading as="h1" size="xl">Carte</Heading>
+          <Text color="text.default">Notre sélection du moment.</Text>
+        </Stack>
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
+          {ITEMS.map((it) => (
+            <Box key={it.title} p={6} bg={{ base: 'white', _dark: 'gray.800' }} borderRadius="xl" border="1px solid" borderColor="border.muted">
+              <Heading as="h3" size="md">{it.title}</Heading>
+              <Text color="text.default" my={2}>{it.desc}</Text>
+              <Text fontWeight={700}>{it.price}</Text>
+            </Box>
+          ))}
+        </SimpleGrid>
+      </Container>
+    </Box>
+  );
+}
+
