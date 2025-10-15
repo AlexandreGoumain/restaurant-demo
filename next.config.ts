@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
     // Disable Segment Explorer to avoid client-manifest errors in dev on some setups
     devtoolSegmentExplorer: false,
   },
+  // Enable standalone output for Docker
+  output: 'standalone',
 };
 
 export default nextConfig;
