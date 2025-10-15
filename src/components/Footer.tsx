@@ -46,7 +46,7 @@ export default function Footer() {
           </Stack>
           <Stack spacing={3} align="center" textAlign="center">
             <Heading as="h3" size="md" color="white">
-              Horaires, test
+              Horaires
             </Heading>
             <List spacing={2} color="gray.300">
               <ListItem>{quickHours.weekdays}</ListItem>
