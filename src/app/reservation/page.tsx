@@ -1,5 +1,11 @@
 "use client";
 
+import { mockFetch } from "@/lib/mock";
+import { restaurantInfo } from "@/lib/restaurantInfo";
+import type {
+    ReservationFormData,
+    ReservationFormErrors,
+} from "@/types/reservation";
 import {
     Box,
     Button,
@@ -17,9 +23,6 @@ import {
     useToast,
 } from "@chakra-ui/react";
 import React, { useMemo, useState } from "react";
-import { mockFetch } from "@/lib/mock";
-import { restaurantInfo } from "@/lib/restaurantInfo";
-import type { ReservationFormData, ReservationFormErrors } from "@/types/reservation";
 
 export default function ReservationPage() {
     const [form, setForm] = useState<ReservationFormData>({
@@ -106,10 +109,11 @@ export default function ReservationPage() {
                 note: "",
             });
             setErrors({});
-        } catch (error) {
+        } catch {
             toast({
                 title: "Erreur",
-                description: "Veuillez réessayer plus tard ou nous contacter directement.",
+                description:
+                    "Veuillez réessayer plus tard ou nous contacter directement.",
                 status: "error",
             });
         } finally {
@@ -136,7 +140,8 @@ export default function ReservationPage() {
                             Disponibilités en temps réel, confirmation rapide.
                         </Text>
                         <Text color="text.muted" fontSize="sm" mt={2}>
-                            {restaurantInfo.fullName} • {restaurantInfo.address.fullAddress}
+                            {restaurantInfo.fullName} •{" "}
+                            {restaurantInfo.address.fullAddress}
                         </Text>
                     </Box>
 
@@ -151,18 +156,28 @@ export default function ReservationPage() {
                         boxShadow="xl"
                     >
                         <Stack spacing={5}>
-                            <FormControl isRequired isInvalid={Boolean(errors.name)}>
-                                <FormLabel htmlFor="name">Nom complet</FormLabel>
+                            <FormControl
+                                isRequired
+                                isInvalid={Boolean(errors.name)}
+                            >
+                                <FormLabel htmlFor="name">
+                                    Nom complet
+                                </FormLabel>
                                 <Input
                                     id="name"
                                     name="name"
                                     value={form.name}
                                     onChange={(e) =>
-                                        setForm({ ...form, name: e.target.value })
+                                        setForm({
+                                            ...form,
+                                            name: e.target.value,
+                                        })
                                     }
                                     placeholder="Jean Dupont"
                                 />
-                                <FormErrorMessage>{errors.name}</FormErrorMessage>
+                                <FormErrorMessage>
+                                    {errors.name}
+                                </FormErrorMessage>
                             </FormControl>
 
                             <FormControl isInvalid={Boolean(errors.email)}>
@@ -173,11 +188,16 @@ export default function ReservationPage() {
                                     type="email"
                                     value={form.email}
                                     onChange={(e) =>
-                                        setForm({ ...form, email: e.target.value })
+                                        setForm({
+                                            ...form,
+                                            email: e.target.value,
+                                        })
                                     }
                                     placeholder="jean.dupont@email.com"
                                 />
-                                <FormErrorMessage>{errors.email}</FormErrorMessage>
+                                <FormErrorMessage>
+                                    {errors.email}
+                                </FormErrorMessage>
                             </FormControl>
 
                             <FormControl isInvalid={Boolean(errors.phone)}>
@@ -188,30 +208,52 @@ export default function ReservationPage() {
                                     type="tel"
                                     value={form.phone}
                                     onChange={(e) =>
-                                        setForm({ ...form, phone: e.target.value })
+                                        setForm({
+                                            ...form,
+                                            phone: e.target.value,
+                                        })
                                     }
-                                    placeholder={restaurantInfo.contact.phoneDisplay}
+                                    placeholder={
+                                        restaurantInfo.contact.phoneDisplay
+                                    }
                                 />
-                                <FormErrorMessage>{errors.phone}</FormErrorMessage>
+                                <FormErrorMessage>
+                                    {errors.phone}
+                                </FormErrorMessage>
                             </FormControl>
 
-                            <FormControl isRequired isInvalid={Boolean(errors.date)}>
-                                <FormLabel htmlFor="date">Date et heure</FormLabel>
+                            <FormControl
+                                isRequired
+                                isInvalid={Boolean(errors.date)}
+                            >
+                                <FormLabel htmlFor="date">
+                                    Date et heure
+                                </FormLabel>
                                 <Input
                                     id="date"
                                     name="date"
                                     type="datetime-local"
                                     value={form.date}
                                     onChange={(e) =>
-                                        setForm({ ...form, date: e.target.value })
+                                        setForm({
+                                            ...form,
+                                            date: e.target.value,
+                                        })
                                     }
                                     min={minDateTime}
                                 />
-                                <FormErrorMessage>{errors.date}</FormErrorMessage>
+                                <FormErrorMessage>
+                                    {errors.date}
+                                </FormErrorMessage>
                             </FormControl>
 
-                            <FormControl isRequired isInvalid={Boolean(errors.partySize)}>
-                                <FormLabel htmlFor="partySize">Nombre de convives</FormLabel>
+                            <FormControl
+                                isRequired
+                                isInvalid={Boolean(errors.partySize)}
+                            >
+                                <FormLabel htmlFor="partySize">
+                                    Nombre de convives
+                                </FormLabel>
                                 <NumberInput
                                     min={1}
                                     max={20}
@@ -219,28 +261,39 @@ export default function ReservationPage() {
                                     onChange={(_, value) =>
                                         setForm({
                                             ...form,
-                                            partySize: Number.isFinite(value) ? value : 2,
+                                            partySize: Number.isFinite(value)
+                                                ? value
+                                                : 2,
                                         })
                                     }
                                 >
                                     <NumberInputField />
                                 </NumberInput>
-                                <FormErrorMessage>{errors.partySize}</FormErrorMessage>
+                                <FormErrorMessage>
+                                    {errors.partySize}
+                                </FormErrorMessage>
                             </FormControl>
 
                             <FormControl isInvalid={Boolean(errors.note)}>
-                                <FormLabel htmlFor="note">Note (facultatif)</FormLabel>
+                                <FormLabel htmlFor="note">
+                                    Note (facultatif)
+                                </FormLabel>
                                 <Textarea
                                     id="note"
                                     name="note"
                                     rows={4}
                                     value={form.note}
                                     onChange={(e) =>
-                                        setForm({ ...form, note: e.target.value })
+                                        setForm({
+                                            ...form,
+                                            note: e.target.value,
+                                        })
                                     }
                                     placeholder="Allergies, occasion spéciale, demande particulière..."
                                 />
-                                <FormErrorMessage>{errors.note}</FormErrorMessage>
+                                <FormErrorMessage>
+                                    {errors.note}
+                                </FormErrorMessage>
                             </FormControl>
 
                             <Button
@@ -255,19 +308,29 @@ export default function ReservationPage() {
                         </Stack>
                     </Box>
 
-                    <Box bg="brand.50" p={6} borderRadius="xl" border="1px solid" borderColor="brand.200">
+                    <Box
+                        bg="brand.50"
+                        p={6}
+                        borderRadius="xl"
+                        border="1px solid"
+                        borderColor="brand.200"
+                    >
                         <Heading size="md" color="brand.700" mb={3}>
                             Informations pratiques
                         </Heading>
                         <Stack spacing={2}>
                             <Text fontSize="sm" color="text.muted">
-                                <strong>Horaires:</strong> {restaurantInfo.quickHours.weekdays}, {restaurantInfo.quickHours.weekend}
+                                <strong>Horaires:</strong>{" "}
+                                {restaurantInfo.quickHours.weekdays},{" "}
+                                {restaurantInfo.quickHours.weekend}
                             </Text>
                             <Text fontSize="sm" color="text.muted">
-                                <strong>Téléphone:</strong> {restaurantInfo.contact.phoneDisplay}
+                                <strong>Téléphone:</strong>{" "}
+                                {restaurantInfo.contact.phoneDisplay}
                             </Text>
                             <Text fontSize="sm" color="text.muted">
-                                <strong>Capacité maximale:</strong> {restaurantInfo.events.capacity} personnes
+                                <strong>Capacité maximale:</strong>{" "}
+                                {restaurantInfo.events.capacity} personnes
                             </Text>
                         </Stack>
                     </Box>
